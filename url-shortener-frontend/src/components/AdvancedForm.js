@@ -34,7 +34,6 @@ function AdvancedForm({ onUrlCreated }) {
         tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag) : []
       };
 
-      console.log('Sending payload:', payload); // Debug log
       const response = await axios.post(`${API_BASE_URL}/api/shorten`, payload);
       onUrlCreated(response.data);
       
@@ -48,7 +47,6 @@ function AdvancedForm({ onUrlCreated }) {
         createdBy: ''
       });
     } catch (err) {
-      console.error('Full error:', err.response?.data); // Debug log
       setError(err.response?.data?.message || err.response?.data?.errors?.[0]?.msg || 'Failed to shorten URL');
     } finally {
       setLoading(false);
